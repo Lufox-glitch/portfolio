@@ -37,7 +37,9 @@ body {
   color: #bbbbbb;
 }
 {
-  .quiz-body .question
+  .quiz-body .question{
+    color: #ffffff;
+  }
 }
 .quiz-body {
   background-color: #0a63e9;
