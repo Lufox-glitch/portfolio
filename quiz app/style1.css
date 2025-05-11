@@ -1,0 +1,150 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f08a16;
+  color: #2b14ac;
+}
+
+.content {
+  margin-top: 70px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.header {
+  padding: 15px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #ffffff;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.left-title {
+  font-size: 20px;
+  color: #ffffff;
+}
+
+.right-title {
+  font-size: 14px;
+  color: #bbbbbb;
+}
+{
+  .quiz-body .question
+}
+.quiz-body {
+  background-color: #0a63e9;
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.option-block-container {
+  margin-top: 25px;
+}
+
+.option-block {
+  padding: 15px;
+  background-color: #141414;
+  border: 1px solid #3f51b5;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+  color: #f0f0f0;
+}
+
+.option-block:hover {
+  background-color: #3a3a3a;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 15px 10px 0 0;
+  border: none;
+  border-radius: 8px;
+  background-color: #3f51b5;
+  color: rgb(12, 12, 12);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #5c6bc0;
+}
+
+button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+.result-question {
+  font-weight: bold;
+  margin-top: 20px;
+  background-color: #ffffff;
+  padding: 10px;
+  border-left: 4px solid #3f51b5;
+  border-radius: 6px;
+}
+
+.c-wrong {
+  margin-left: 20px;
+  color: #f44336;
+}
+
+.c-correct {
+  margin-left: 20px;
+  color: #4caf50;
+}
+
+.last-row {
+  border-bottom: 1px solid #444;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+}
+
+.res-header {
+  border-bottom: 1px solid #444;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+  .quiz-body {
+    padding: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .left-title, .right-title {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+
+  button {
+    width: 100%;
+    margin: 10px 0 0 0;
+  }
+}
+
