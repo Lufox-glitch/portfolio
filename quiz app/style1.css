@@ -36,12 +36,9 @@ body {
   font-size: 14px;
   color: #bbbbbb;
 }
-.quiz-body.questions{
-  color: #ffffff;
-}
 
 .quiz-body {
-  background-color: #0a63e9;
+  background-color: #f0f4f8;
   padding: 30px;
   border-radius: 16px;
   max-width: 600px;
@@ -55,7 +52,7 @@ body {
 
 .option-block {
   padding: 15px;
-  background-color: #141414;
+  background-color: #102a43;
   border: 1px solid #3f51b5;
   margin-bottom: 15px;
   border-radius: 10px;
