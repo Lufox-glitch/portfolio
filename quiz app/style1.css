@@ -96,7 +96,7 @@ button:disabled {
 .result-question {
   font-weight: bold;
   margin-top: 20px;
-  background-color: #1b1a1a;
+  background-color:#ffffff;
   padding: 10px;
   border-left: 4px solid #08ee13;
   border-radius: 6px;
@@ -126,7 +126,7 @@ button:disabled {
   text-align: center;
 }
 
-/* Responsive Design */
+
 @media screen and (max-width: 600px) {
   .quiz-body {
     padding: 20px;
