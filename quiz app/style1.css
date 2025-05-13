@@ -36,11 +36,10 @@ body {
   font-size: 14px;
   color: #bbbbbb;
 }
-{
-  .quiz-body .question{
-    color: #ffffff;
-  }
+.quiz-body.questions{
+  color: #ffffff;
 }
+
 .quiz-body {
   background-color: #0a63e9;
   padding: 30px;
@@ -97,9 +96,9 @@ button:disabled {
 .result-question {
   font-weight: bold;
   margin-top: 20px;
-  background-color: #ffffff;
+  background-color: #1b1a1a;
   padding: 10px;
-  border-left: 4px solid #3f51b5;
+  border-left: 4px solid #08ee13;
   border-radius: 6px;
 }
 
