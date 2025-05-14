@@ -14,6 +14,8 @@ const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 // sidebar toggle functionality for mobile
 sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
 
+
+
 // testimonials variables
 const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
 const modalContainer = document.querySelector("[data-modal-container]");
@@ -30,6 +32,8 @@ const testimonialsModalFunc = function () {
   modalContainer.classList.toggle("active");
   overlay.classList.toggle("active");
 }
+
+// add click event to all modal items
 for (let i = 0; i < testimonialsItem.length; i++) {
 
   testimonialsItem[i].addEventListener("click", function () {
@@ -49,7 +53,9 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
 overlay.addEventListener("click", testimonialsModalFunc);
 
-/ custom select variables
+
+
+// custom select variables
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
 const selectValue = document.querySelector("[data-selecct-value]");
@@ -104,18 +110,50 @@ for (let i = 0; i < filterBtn.length; i++) {
     lastClickedBtn = this;
 
   });
-  const navlinks = document.querySelectorAll("[data-nav-link]");
-  const pages = document.querySelectorAll("[data-page]");
 
-  navlinks.foreach((link, index) => {
-    link.addEventListener("click", () => {
-       navlinks.forEach(l => l.classList.remove("active"));
-       pages.forEach(p => p.classList.remove("active"));
-        
-       link.classList.add("active");
-       pages[index].classList.add("active");
+}
 
-    });
+
+
+// contact form variables
+const form = document.querySelector("[data-form]");
+const formInputs = document.querySelectorAll("[data-form-input]");
+const formBtn = document.querySelector("[data-form-btn]");
+
+// add event to all form input field
+for (let i = 0; i < formInputs.length; i++) {
+  formInputs[i].addEventListener("input", function () {
+
+    // check form validation
+    if (form.checkValidity()) {
+      formBtn.removeAttribute("disabled");
+    } else {
+      formBtn.setAttribute("disabled", "");
+    }
+
   });
+}
 
+
+
+// page navigation variables
+const navigationLinks = document.querySelectorAll("[data-nav-link]");
+const pages = document.querySelectorAll("[data-page]");
+
+// add event to all nav link
+for (let i = 0; i < navigationLinks.length; i++) {
+  navigationLinks[i].addEventListener("click", function () {
+
+    for (let i = 0; i < pages.length; i++) {
+      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
+        pages[i].classList.add("active");
+        navigationLinks[i].classList.add("active");
+        window.scrollTo(0, 0);
+      } else {
+        pages[i].classList.remove("active");
+        navigationLinks[i].classList.remove("active");
+      }
+    }
+
+  });
 }
