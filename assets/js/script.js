@@ -104,5 +104,18 @@ for (let i = 0; i < filterBtn.length; i++) {
     lastClickedBtn = this;
 
   });
+  const navlinks = document.querySelectorAll("[data-nav-link]");
+  const pages = document.querySelectorAll("[data-page]");
+
+  navlinks.foreach((link, index) => {
+    link.addEventListener("click", () => {
+       navlinks.forEach(l => l.classList.remove("active"));
+       pages.forEach(p => p.classList.remove("active"));
+        
+       link.classList.add("active");
+       pages[index].classList.add("active");
+
+    });
+  });
 
 }
