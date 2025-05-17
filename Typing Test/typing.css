@@ -1,71 +1,80 @@
+/* Reset */
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Fira Code', monospace; /* Looks like a dev tool */
 }
+
+/* Body */
 body {
-  background-color: #3066f6;
-}
-.container {
-  width: 80vmin;
-  padding: 50px 30px;
-  background-color: #ffffff;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
-  border-radius: 10px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-.stats {
-  text-align: right;
-  font-size: 18px;
-  margin-bottom: 30px;
-}
-.stats span {
-  font-weight: 600;
-}
-#quote {
-  text-align: justify;
-  margin: 50px 0 30px 0;
-}
-textarea {
-  resize: none;
-  width: 100%;
-  border-radius: 5px;
-  padding: 10px 5px;
-  font-size: 16px;
-}
-button {
-  float: right;
-  margin-top: 20px;
-  background-color: #3066f6;
-  color: #ffffff;
-  border: none;
-  padding: 10px 30px;
-  border-radius: 5px;
-  font-size: 18px;
-}
-.result {
-  margin-top: 40px;
-  display: none;
-}
-.result h3 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-size: 22px;
-}
-.wrapper {
+  background: linear-gradient(135deg, #0a192f, #1f4068); /* deep techy blue gradient */
+  height: 100vh;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
 }
-.wrapper span {
-  font-weight: 600;
+
+/* Glassmorphism card */
+.typing-container {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 40px;
+  width: 90%;
+  max-width: 700px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+  text-align: center;
 }
-.success {
-  color: #44b267;
+
+/* Sentence */
+.sentence {
+  font-size: 20px;
+  margin-bottom: 25px;
+  color: #00ffe7; /* glowing cyan text */
+  letter-spacing: 1px;
 }
-.fail {
-  color: #e81c4e;
+
+/* Typing input */
+.typing-input {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+  box-shadow: inset 0 0 5px rgba(0, 255, 255, 0.2);
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+button {
+  background: #00ffe7;
+  color: #0a192f;
+  padding: 12px 24px;
+  border: none;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 0 10px #00ffe7, 0 0 30px #00ffe7;
+}
+
+button:hover {
+  background: #0ff;
+  color: #000;
+}
+
+/* Stats */
+.stats {
+  margin-top: 20px;
+  color: #ffffffcc;
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: 1px;
 }
