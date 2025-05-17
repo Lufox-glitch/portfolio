@@ -84,9 +84,7 @@
 }
 .Opponents.green {
   background-image: url(../assets/images/car1.png)}
-    .Opponents.yellow{
-      background-image: url(../assets/images/cars4.png);
-  }
+    
 .roadLines {
   width: 10px;
   height: 100px;
