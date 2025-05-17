@@ -63,7 +63,7 @@
   width: 50px;
   height: 75px;
   position: absolute;
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA3NSI+PHBhdGggZmlsbD0iIzAwNjZmZiIgZD0iTTUgMjBoNDB2MzVINXoiLz48cGF0aCBmaWxsPSIjMDAwMDAwIiBkPSJNMTAgMjVIMzB2MTVIMTB6Ii8+PC9zdmc+');
+  background-image: url(../assets/images/cars.png)
   background-size: 100% 100%;
   z-index: 1;
 }
@@ -78,15 +78,15 @@
 
 /* Predefined color classes (optional) */
 .Opponents.red {
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA3NSI+PHBhdGggZmlsbD0iI2ZmMDAwMCIgZD0iTTUgMjBoNDB2MzVINXoiLz48cGF0aCBmaWxsPSIjMDAwMDAwIiBkPSJNMTAgMjVIMzB2MTVIMTB6Ii8+PC9zdmc+');
+  background-image: url(../assets/images/cars5.png)
 }
 
 .Opponents.blue {
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA3NSI+PHBhdGggZmlsbD0iIzAwNjZmZiIgZD0iTTUgMjBoNDB2MzVINXoiLz48cGF0aCBmaWxsPSIjMDAwMDAwIiBkPSJNMTAgMjVIMzB2MTVIMTB6Ii8+PC9zdmc+');
+  background-image: url(../assets/images/cars3.png)
 }
 
 .Opponents.green {
-  background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA3NSI+PHBhdGggZmlsbD0iIzAwYzAwMCIgZD0iTTUgMjBoNDB2MzVINXoiLz48cGF0aCBmaWxsPSIjMDAwMDAwIiBkPSJNMTAgMjVIMzB2MTVIMTB6Ii8+PC9zdmc+');
+  background-image: url(../assets/images/car1.png)
 }
 
 .roadLines {
