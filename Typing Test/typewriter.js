@@ -123,35 +123,3 @@ window.onload = () => {
   userInput.disabled = true;
   renderNewQuote();
 };
-function checkWordAccuracy() {
-  const originalWords = originalText.split(' ');
-  const userWords = inputEl.value.trim().split(' ');
-  let correctWords = 0;
-
-  originalWords.forEach((word, index) => {
-    if (userWords[index] === word) {
-      correctWords++;
-    }
-  });
-
-  const accuracy = (correctWords / originalWords.length) * 100;
-  statsEl.innerText = Accuracy: ${accuracy.toFixed(2)}%;
-}
-
-const sentences = [
-  "Practice makes perfect.",
-  "Typing speed improves with consistency.",
-  "Accuracy is more important than speed.",
-  // Add more sentences as desired
-];
-
-function getRandomSentence() {
-  return sentences[Math.floor(Math.random() * sentences.length)];
-}
-
-function restartTest() {
-  inputEl.value = '';
-  sentenceEl.innerText = getRandomSentence();
-  statsEl.innerText = 'Time: 0s | Speed: 0 WPM | Accuracy: 100%';
-  // Reset other necessary variables and states
-}
