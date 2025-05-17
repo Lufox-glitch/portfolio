@@ -96,3 +96,52 @@
   position: absolute;
   left: 195px;
 }
+/* Mobile Controls (Hidden on Desktop) */
+.mobile-controls {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+    z-index: 10;
+}
+
+.ctrl-group {
+    display: flex;
+    gap: 10px;
+}
+
+.mobile-controls div {
+    width: 60px;
+    height: 60px;
+    background: rgba(0,0,0,0.3);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    user-select: none;
+    touch-action: manipulation;
+}
+
+/* Show only on mobile */
+@media (max-width: 768px) {
+    .mobile-controls {
+        display: flex;
+    }
+    
+    .gameArea {
+        width: 100%;
+        max-width: 100%;
+        border-left: none;
+        border-right: none;
+    }
+}
+
+/* Prevent zooming on mobile */
+html {
+    touch-action: manipulation;
+    overflow: hidden;
+}

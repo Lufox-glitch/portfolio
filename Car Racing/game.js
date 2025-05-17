@@ -169,3 +169,64 @@ function endGame() {
   player.isStart = false;
   startScreen.classList.remove('hide');
 }
+// Touch event handlers
+let touchStartX = 0;
+
+gameArea.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    e.preventDefault();
+}, { passive: false });
+
+gameArea.addEventListener('touchmove', (e) => {
+    const touchX = e.touches[0].clientX;
+    const dx = touchX - touchStartX;
+    
+    // Horizontal swipe controls
+    keys.ArrowLeft = dx < -30;
+    keys.ArrowRight = dx > 30;
+    
+    e.preventDefault();
+}, { passive: false });
+
+gameArea.addEventListener('touchend', () => {
+    keys.ArrowLeft = false;
+    keys.ArrowRight = false;
+});
+// Mobile button controls
+const mobileControls = {
+    up: false,
+    left: false,
+    right: false,
+    down: false
+};
+
+document.querySelector('.btn-up').addEventListener('touchstart', () => mobileControls.up = true);
+document.querySelector('.btn-up').addEventListener('touchend', () => mobileControls.up = false);
+document.querySelector('.btn-left').addEventListener('touchstart', () => mobileControls.left = true);
+document.querySelector('.btn-left').addEventListener('touchend', () => mobileControls.left = false);
+document.querySelector('.btn-right').addEventListener('touchstart', () => mobileControls.right = true);
+document.querySelector('.btn-right').addEventListener('touchend', () => mobileControls.right = false);
+document.querySelector('.btn-down').addEventListener('touchstart', () => mobileControls.down = true);
+document.querySelector('.btn-down').addEventListener('touchend', () => mobileControls.down = false);
+
+// Update your Play() function to include mobile controls
+function Play() {
+    // Combine keyboard and mobile controls
+    const verticalMove = keys.ArrowUp || mobileControls.up ? -player.speed : 
+                        keys.ArrowDown || mobileControls.down ? player.speed : 0;
+    
+    const horizontalMove = keys.ArrowLeft || mobileControls.left ? -player.speed : 
+                          keys.ArrowRight || mobileControls.right ? player.speed : 0;
+    
+    player.y += verticalMove;
+    player.x += horizontalMove;
+    
+    // ... rest of your game logic
+}
+// Detect mobile device
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+if (isMobile) {
+    // Mobile-specific adjustments
+    player.speed = 7; // Slightly faster for touch controls
+}
