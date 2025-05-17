@@ -69,3 +69,26 @@ button {
 .fail {
   color: #e81c4e;
 }
+@media (max-width: 600px) {
+  .typing-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .sentence {
+    font-size: 16px;
+  }
+
+  .typing-input {
+    font-size: 14px;
+  }
+}
+
+.typing-input {
+  transition: border-color 0.3s ease;
+}
+
+.typing-input:focus {
+  border-color: #00ffe7;
+  box-shadow: 0 0 5px #00ffe7;
+}
