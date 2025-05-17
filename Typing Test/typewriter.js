@@ -123,3 +123,17 @@ window.onload = () => {
   userInput.disabled = true;
   renderNewQuote();
 };
+function checkWordAccuracy() {
+  const originalWords = originalText.split(' ');
+  const userWords = inputEl.value.trim().split(' ');
+  let correctWords = 0;
+
+  originalWords.forEach((word, index) => {
+    if (userWords[index] === word) {
+      correctWords++;
+    }
+  });
+
+  const accuracy = (correctWords / originalWords.length) * 100;
+  statsEl.innerText = Accuracy: ${accuracy.toFixed(2)}%;
+}
