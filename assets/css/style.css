@@ -1,7 +1,12 @@
 
+
 :root {
 
- 
+  /**
+   * colors
+   */
+
+  /* gradient */
 
   --bg-gradient-onyx: linear-gradient(
     to bottom right, 
@@ -94,10 +99,6 @@
 
 
 
-
-/*-----------------------------------*\
-  #RESET
-\*-----------------------------------*/
 
 *, *::before, *::after {
   margin: 0;
@@ -311,10 +312,13 @@ main {
   gap: 15px;
 }
 
-.avatar-box {
-  background: var(--bg-gradient-onyx);
-  border-radius: 20px;
-}
+ .circle-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+ }
+
 
 .info-content .name {
   color: var(--white-2);
@@ -536,10 +540,6 @@ main {
 }
 
 
-/**
- * #testimonials 
- */
-
 .testimonials { margin-bottom: 30px; }
 
 .testimonials-title { margin-bottom: 20px; }
@@ -588,9 +588,6 @@ main {
 }
 
 
-/**
- * #testimonials-modal
- */
 
 .modal-container {
   position: fixed;
@@ -702,54 +699,8 @@ main {
 }
 
 
-/**
- * #clients 
- */
-
-.clients { margin-bottom: 15px; }
-
-.clients-list {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 15px;
-  margin: 0 -15px;
-  padding: 25px;
-  padding-bottom: 25px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: inline mandatory;
-  scroll-padding-inline: 25px;
-}
-
-.clients-item {
-  min-width: 50%;
-  scroll-snap-align: start;
-}
-
-.clients-item img {
-  width: 100%;
-  filter: grayscale(1);
-  transition: var(--transition-1);
-}
-
-.clients-item img:hover { filter: grayscale(0); }
-
-
-
-
-
-/*-----------------------------------*\
-  #RESUME
-\*-----------------------------------*/
-
 .article-title { margin-bottom: 30px; }
 
-
-/**
- * education and experience 
- */
 
 .timeline { margin-bottom: 30px; }
 
