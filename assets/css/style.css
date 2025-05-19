@@ -697,7 +697,11 @@ main {
   font-weight: var(--fw-300);
   line-height: 1.6;
 }
-
+.testimonials-slider {
+  background-color: yellow;
+  padding: 20px;
+  border-radius: 10px;
+}
 
 .article-title { margin-bottom: 30px; }
 
