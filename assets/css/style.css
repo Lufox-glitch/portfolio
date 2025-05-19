@@ -1,12 +1,7 @@
 
-
 :root {
 
-  /**
-   * colors
-   */
-
-  /* gradient */
+ 
 
   --bg-gradient-onyx: linear-gradient(
     to bottom right, 
@@ -99,6 +94,10 @@
 
 
 
+
+/*-----------------------------------*\
+  #RESET
+\*-----------------------------------*/
 
 *, *::before, *::after {
   margin: 0;
@@ -312,13 +311,10 @@ main {
   gap: 15px;
 }
 
- .circle-img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  object-fit: cover;
- }
-
+.avatar-box {
+  background: var(--bg-gradient-onyx);
+  border-radius: 20px;
+}
 
 .info-content .name {
   color: var(--white-2);
