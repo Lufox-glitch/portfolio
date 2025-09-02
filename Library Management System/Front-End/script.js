@@ -89,6 +89,8 @@ $(document).ready(function(){
    function searchTable() {
   let input = document.getElementById("searchBox").value.toLowerCase();
 
+  let container = document.getElementById("book_list")
+
   // Select the table by class
   let table = document.querySelector(".table table-borderless table-striped mt-3");
   let rows = table.getElementsByTagName("tr");
