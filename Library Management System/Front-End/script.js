@@ -86,3 +86,27 @@ $(document).ready(function(){
        })
        
    })
+   function searchTable() {
+  let input = document.getElementById("searchBox").value.toLowerCase();
+
+  // Select the table by class
+  let table = document.querySelector(".table table-borderless table-striped mt-3");
+  let rows = table.getElementsByTagName("tr");
+
+  // Loop through rows (skip header)
+  for (let i = 1; i < rows.length; i++) {
+    let cells = rows[i].getElementsByTagName("td");
+    let match = false;
+
+    // Check all cells in the row
+    for (let j = 0; j < cells.length; j++) {
+      if (cells[j].textContent.toLowerCase().includes(input)) {
+        match = true;
+        break;
+      }
+    }
+
+    // Show or hide row
+    rows[i].style.display = match ? "" : "none";
+  }
+}
