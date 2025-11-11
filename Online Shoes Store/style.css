@@ -336,4 +336,45 @@ footer {
 }
 
 
- 
+ /* Mobile menu styling */
+.menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    transition: left 0.3s ease;
+    z-index: 40;
+    padding-top: 60px;
+}
+
+.menu.open {
+    left: 0;
+}
+
+.menu ul {
+    flex-direction: column;
+    gap: 24px;
+    padding: 20px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+}
+
+.ham {
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+}
+
+@media (max-width: 900px) {
+    .heading { display: none; }
+    .heading1 { display: block; }
+}
