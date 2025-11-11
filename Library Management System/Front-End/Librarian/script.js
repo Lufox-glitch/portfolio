@@ -112,3 +112,67 @@ $(document).ready(function(){
     rows[i].style.display = match ? "" : "none";
   }
 }
+// ...existing code...
+$(document).ready(function(){
+    // ...existing code...
+    
+    // --- improved search (works with the current HTML) ---
+    const searchInput = document.getElementById("searchBox");
+    const searchBtn = document.querySelector('button[onclick="searchTable()"]') || document.querySelector('#searchBox + button');
+
+    function searchTable() {
+      const query = (searchInput && searchInput.value || "").trim().toLowerCase();
+      const table = document.querySelector("#book_list table");
+      if (!table) return;
+
+      // use tbody rows (skip the thead)
+      const tbody = table.tBodies[0];
+      if (!tbody) return;
+      const rows = Array.from(tbody.rows);
+
+      // if empty query -> show all
+      if (!query) {
+        rows.forEach(r => r.style.display = "");
+        return;
+      }
+
+      let any = false;
+      rows.forEach(row => {
+        // check entire row text (includes th + td)
+        const text = (row.textContent || "").toLowerCase();
+        const match = text.includes(query);
+        row.style.display = match ? "" : "none";
+        if (match) any = true;
+      });
+
+      // optional: if you want a "no results" indicator, add/remove DOM element here
+    }
+
+    // live search + Enter key + button click
+    if (searchInput) {
+      let debounceTimer = null;
+      searchInput.addEventListener("input", () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(searchTable, 180);
+      });
+      searchInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          searchTable();
+        } else if (e.key === "Escape") {
+          searchInput.value = "";
+          searchTable();
+        }
+      });
+    }
+
+    if (searchBtn) {
+      searchBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        searchTable();
+      });
+    }
+
+    // ...existing code...
+});
+// ...existing code...
