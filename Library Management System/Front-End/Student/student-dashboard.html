@@ -4,109 +4,539 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Student Dashboard</title>
-  <link rel="stylesheet" href="../Librarian/style.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <style>
-    .dashboard-header {
-      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+    }
+
+    /* Header */
+    .student-header {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
       color: white;
-      padding: 20px 40px;
+      padding: 25px 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
     }
-    .dashboard-header h1 { margin: 0; }
-    .dashboard-header .user-info {
+
+    .header-left {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .header-title {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .header-subtitle {
+      margin: 5px 0 0 0;
+      font-size: 12px;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+
+    .student-info {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .user-details {
       text-align: right;
+      font-size: 13px;
+      min-width: 160px;
+    }
+
+    .user-name {
+      margin: 0;
+      font-weight: 600;
       font-size: 14px;
     }
-    .logout-btn {
+
+    .user-email {
+      margin: 5px 0;
+      opacity: 0.9;
+      font-size: 12px;
+    }
+
+    .user-id {
+      margin: 5px 0;
+      opacity: 0.85;
+      font-size: 11px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 4px 8px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    .header-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-header {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-back {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-back:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateX(-2px);
+    }
+
+    .btn-logout {
+      background: rgba(139, 0, 0, 0.8);
+      color: white;
+      border: none;
+    }
+
+    .btn-logout:hover {
+      background: rgba(139, 0, 0, 1);
+      transform: translateY(-2px);
+    }
+
+    /* Main Container */
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    /* Welcome Section */
+    .welcome-section {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      border-left: 4px solid #f5576c;
+    }
+
+    .welcome-section h2 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .welcome-section p {
+      color: #666;
+      margin: 0;
+      font-size: 14px;
+    }
+
+    /* Search Section */
+    .search-section {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+
+    .search-section h3 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .search-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .search-container input {
+      flex: 1;
+      min-width: 250px;
+      padding: 12px 14px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .search-container input:focus {
+      outline: none;
+      border-color: #f5576c;
+      box-shadow: 0 0 8px rgba(245, 87, 108, 0.2);
+    }
+
+    .search-container button {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-container button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(245, 87, 108, 0.3);
+    }
+
+    /* Books Table */
+    .books-table-section {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      overflow-x: auto;
+    }
+
+    .books-table-section h3 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+    }
+
+    .table thead {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+    }
+
+    .table thead th {
+      padding: 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 13px;
+      border: none;
+    }
+
+    .table tbody tr {
+      border-bottom: 1px solid #f0f0f0;
+      transition: all 0.3s ease;
+    }
+
+    .table tbody tr:hover {
+      background: #f9f9f9;
+      transform: scale(1.01);
+    }
+
+    .table tbody td {
+      padding: 14px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .table tbody td.title {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .table tbody td.author {
+      color: #f5576c;
+      font-weight: 500;
+    }
+
+    .request-btn {
+      padding: 8px 14px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .request-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(245, 87, 108, 0.3);
+    }
+
+    .request-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    /* Requests Section */
+    .requests-section {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .requests-section h3 {
+      color: #333;
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .request-item {
+      padding: 14px;
+      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      border-left: 4px solid #f5576c;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .request-item-text {
+      color: #333;
+      flex: 1;
+    }
+
+    .request-item-date {
+      color: #666;
+      font-size: 11px;
+      margin-top: 4px;
+    }
+
+    .remove-request-btn {
+      padding: 6px 10px;
       background: #d32f2f;
       color: white;
-      padding: 8px 16px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      font-size: 11px;
+      transition: all 0.3s ease;
+      margin-left: 10px;
+    }
+
+    .remove-request-btn:hover {
+      background: #b71c1c;
+    }
+
+    .no-requests {
+      text-align: center;
+      color: #999;
+      padding: 30px;
       font-size: 14px;
-      margin-top: 10px;
     }
-    .logout-btn:hover { background: #b71c1c; }
-    .container { max-width: 1000px; margin: 0 auto; padding: 30px 20px; }
-    .search { margin-bottom: 30px; }
-    .search input, .search button {
-      padding: 10px;
+
+    .no-results {
+      text-align: center;
+      color: #999;
+      padding: 30px;
       font-size: 14px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-right: 5px;
     }
-    .search button { background: #4f46e5; color: white; border: none; cursor: pointer; }
-    .book-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    .book-table th, .book-table td {
-      padding: 12px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .student-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .header-left {
+        width: 100%;
+      }
+
+      .student-info {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .user-details {
+        text-align: center;
+      }
+
+      .header-buttons {
+        justify-content: center;
+        width: 100%;
+      }
     }
-    .book-table th { background: #f5f5f5; font-weight: 600; }
-    .book-table tr:hover { background: #f9f9f9; }
-    .request-btn { background: #4f46e5; color: white; padding: 6px 12px; border: none; border-radius: 4px; cursor: pointer; }
-    .request-btn:hover { background: #3d33b3; }
-    .request-btn:disabled { background: #ccc; cursor: not-allowed; }
+
+    @media (max-width: 768px) {
+      .dashboard-container {
+        padding: 20px 15px;
+      }
+
+      .search-container {
+        flex-direction: column;
+      }
+
+      .search-container input {
+        min-width: auto;
+      }
+
+      .table {
+        font-size: 12px;
+      }
+
+      .table thead th,
+      .table tbody td {
+        padding: 10px;
+      }
+
+      .request-btn {
+        padding: 6px 10px;
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .student-header {
+        padding: 15px;
+      }
+
+      .header-title {
+        font-size: 20px;
+      }
+
+      .btn-header {
+        padding: 8px 12px;
+        font-size: 12px;
+      }
+
+      .search-container button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="dashboard-header">
-    <div>
-      <h1>Student Dashboard</h1>
-      <p>Welcome to your library portal</p>
+  <!-- Header -->
+  <header class="student-header">
+    <div class="header-left">
+      <h2 class="header-title">📚 Student Library Portal</h2>
+      <p class="header-subtitle">Access and manage your book requests</p>
     </div>
-    <div class="user-info">
-      <p>👤 <strong id="studentName">Name</strong></p>
-      <p id="studentEmail">email@example.com</p>
-      <button class="logout-btn" id="logoutBtn">Logout</button>
-    </div>
-  </div>
-
-  <div class="container">
-    <section>
-      <h2>Search Books</h2>
-      <div class="search">
-        <input type="text" id="searchInput" placeholder="Search by title, author, or publisher" />
-        <button id="searchBtn">Search</button>
-        <button id="clearBtn">Clear</button>
+    
+    <div class="student-info">
+      <div class="user-details">
+        <p class="user-name"><strong id="studentName">Student Name</strong></p>
+        <p class="user-email" id="studentEmail">email@example.com</p>
+        <p class="user-id"><i class="fas fa-id-card"></i> <span id="studentId">S001</span></p>
       </div>
+      <div class="header-buttons">
+        <a href="../index.html" class="btn-header btn-back">
+          <i class="fas fa-arrow-left"></i> Back
+        </a>
+        <button id="logoutBtn" class="btn-header btn-logout">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </div>
+  </header>
 
-      <div id="book_list">
-        <table class="book-table" id="booksTable">
+  <!-- Main Container -->
+  <div class="dashboard-container">
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+      <h2>Welcome, <span id="welcomeName">Student</span>! 👋</h2>
+      <p>Search for books, check availability, and manage your library requests all in one place.</p>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-section">
+      <h3>🔍 Search Available Books</h3>
+      <div class="search-container">
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search by title, author, or publisher..." 
+        />
+        <button id="searchBtn">
+          <i class="fas fa-search"></i> Search
+        </button>
+        <button id="clearBtn" style="background: #999;">
+          <i class="fas fa-times"></i> Clear
+        </button>
+      </div>
+    </div>
+
+    <!-- Books Table -->
+    <div class="books-table-section">
+      <h3>📖 Available Books</h3>
+      <div style="overflow-x: auto;">
+        <table class="table">
           <thead>
             <tr>
               <th>Title</th>
               <th>Author</th>
               <th>Publisher</th>
               <th>Pages</th>
+              <th>Serial</th>
               <th>Action</th>
             </tr>
           </thead>
-                  <tbody id="booksTableBody">
+          <tbody id="booksTableBody">
+            <!-- Books load here from books-data.js -->
           </tbody>
         </table>
       </div>
-    </section>
+      <div id="noResults" class="no-results" style="display:none;">
+        <i class="fas fa-inbox" style="font-size: 32px; color: #ccc; margin-bottom: 10px; display: block;"></i>
+        No books found matching your search.
+      </div>
+    </div>
 
-    <section style="margin-top: 40px;">
-      <h2>Your Requests</h2>
-      <ul id="requestList" style="list-style: none; padding: 0;">
-        <li style="color: #999;">No requests yet.</li>
-      </ul>
-    </section>
+    <!-- Requests Section -->
+    <div class="requests-section">
+      <h3>📋 Your Book Requests</h3>
+      <div id="requestList">
+        <div class="no-requests">
+          <i class="fas fa-smile-wink" style="font-size: 32px; margin-bottom: 10px; display: block; color: #ccc;"></i>
+          No requests yet. Start requesting books!
+        </div>
+      </div>
+    </div>
   </div>
 
+  <script src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
   <script src="../books-data.js"></script>
   <script src="student-dashboard.js"></script>
-  <script>
-    // Load all 100 books from shared data on page load
-    document.addEventListener("DOMContentLoaded", () => {
-      loadBooksToTable("booksTableBody");
-    });
-  </script>
 </body>
 </html>
