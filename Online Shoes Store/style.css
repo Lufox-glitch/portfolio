@@ -307,4 +307,32 @@ footer {
     max-width: 100%;
     height: auto;
 }
+/* Contact Section */
+#contact {
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 80px 50px;
+}
+
+.contact-section {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.contact-section h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.contact-section p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #333;
+}
+
  
