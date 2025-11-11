@@ -1,10 +1,11 @@
 // ...existing code...
-// smoother mobile menu + robust search (debounced, enter/click)
+// Cleaned search + menu handlers (single, non-duplicated implementation)
+
 const closeBtn = document.querySelector(".close");
 const openBtn = document.querySelector(".ham");
 const menu = document.querySelector(".menu");
 
-// -- Menu behavior (use class .open for smooth CSS transitions) --
+// Menu toggle (keeps previous behavior)
 if (openBtn && menu) {
   openBtn.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -12,7 +13,6 @@ if (openBtn && menu) {
     menu.setAttribute("aria-hidden", "false");
   });
 }
-
 if (closeBtn && menu) {
   closeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -20,16 +20,13 @@ if (closeBtn && menu) {
     menu.setAttribute("aria-hidden", "true");
   });
 }
-
-// Close menu when clicking outside or pressing Escape
 document.addEventListener("click", (e) => {
   if (!menu || !menu.classList.contains("open")) return;
-  if (!menu.contains(e.target) && !openBtn.contains(e.target)) {
+  if (!menu.contains(e.target) && openBtn && !openBtn.contains(e.target)) {
     menu.classList.remove("open");
     menu.setAttribute("aria-hidden", "true");
   }
 });
-
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && menu && menu.classList.contains("open")) {
     menu.classList.remove("open");
@@ -37,13 +34,12 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// -- Search functionality --
-// tries to find common search elements; works even if some are missing
-const searchInput = document.querySelector(".search input") || document.getElementById("input");
-const searchBtn = document.querySelector(".search .s") || document.querySelector(".search button") || document.querySelector(".search a");
+// --- Search implementation (single, reliable) ---
+const searchInput = document.getElementById("input");
+const searchButton = document.querySelector(".search-btn") || document.querySelector(".search .s");
 const productItems = Array.from(document.querySelectorAll(".items"));
+const productsContainer = document.querySelector(".container");
 
-// debounce helper for smoother typing UX
 function debounce(fn, delay = 180) {
   let timer;
   return (...args) => {
@@ -52,39 +48,80 @@ function debounce(fn, delay = 180) {
   };
 }
 
-function performSearch() {
-  if (!productItems.length) return; // nothing to filter
-  const q = (searchInput && searchInput.value || "").trim().toLowerCase();
+function clearSearch() {
+  productItems.forEach(it => {
+    it.style.display = "";
+    it.classList.remove("hidden-by-search");
+  });
+  const no = document.querySelector(".no-results");
+  if (no) no.remove();
+}
+
+function showNoResults() {
+  if (!productsContainer) return;
+  if (document.querySelector(".no-results")) return;
+  const msg = document.createElement("div");
+  msg.className = "no-results";
+  msg.textContent = "No products found.";
+  msg.style.cssText = "padding:18px;text-align:center;color:#555;";
+  productsContainer.appendChild(msg);
+}
+
+function performSearch(query) {
+  if (!productItems.length) return;
+  const q = (typeof query === "string" ? query : (searchInput?.value || "")).trim().toLowerCase();
 
   if (!q) {
-    productItems.forEach(it => {
-      it.style.display = "";
-      it.classList.remove("hidden-by-search");
-    });
+    clearSearch();
     return;
   }
 
+  let anyMatch = false;
   productItems.forEach(it => {
-    const title = (it.querySelector(".name")?.textContent || it.textContent || "").toLowerCase();
+    const title = (it.querySelector(".name")?.textContent || "").toLowerCase();
     const info = (it.querySelector(".info")?.textContent || "").toLowerCase();
-    const match = title.includes(q) || info.includes(q);
-    it.style.display = match ? "" : "none";
-    it.classList.toggle("hidden-by-search", !match);
+    const price = (it.querySelector(".price")?.textContent || "").toLowerCase();
+    const match = title.includes(q) || info.includes(q) || price.includes(q);
+
+    if (match) {
+      it.style.display = "";
+      it.classList.remove("hidden-by-search");
+      anyMatch = true;
+    } else {
+      it.style.display = "none";
+      it.classList.add("hidden-by-search");
+    }
   });
+
+  if (!anyMatch) showNoResults();
+  else {
+    const existing = document.querySelector(".no-results");
+    if (existing) existing.remove();
+  }
 }
 
-const debouncedPerformSearch = debounce(performSearch);
+const debouncedPerformSearch = debounce(performSearch, 200);
 
+// input interactions
 if (searchInput) {
   searchInput.addEventListener("input", debouncedPerformSearch);
-  searchInput.addEventListener("keypress", (e) => {
-    if (e.key === "Enter") performSearch();
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      performSearch();
+    } else if (e.key === "Escape") {
+      searchInput.value = "";
+      clearSearch();
+    }
   });
 }
 
-if (searchBtn) {
-  searchBtn.addEventListener("click", (e) => {
-    e.preventDefault();
+// button click
+if (searchButton) {
+  searchButton.addEventListener("click", (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (e && e.stopPropagation) e.stopPropagation();
     performSearch();
   });
 }
+// ...existing code...
